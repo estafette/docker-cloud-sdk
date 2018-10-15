@@ -1,0 +1,49 @@
+builder:
+  track: dev
+
+labels:
+  app: docker-cloud-sdk
+  app-group: estafette-various
+  team: estafette-team
+  language: docker
+
+stages:
+  bake:
+    image: extensions/docker:dev
+    action: build
+    container: cloud-sdk
+    repositories:
+    - estafette
+
+  push-to-docker-hub:
+    image: extensions/docker:dev
+    action: push
+    container: cloud-sdk
+    repositories:
+    - estafette
+    tags:
+    - dev
+
+releases:
+  beta:
+    stages:
+      tag-container-image:
+        image: extensions/docker:dev
+        action: tag
+        container: cloud-sdk
+        repositories:
+        - estafette
+        tags:
+        - beta
+
+  stable:
+    stages:
+      tag-container-image:
+        image: extensions/docker:dev
+        action: tag
+        container: cloud-sdk
+        repositories:
+        - estafette
+        tags:
+        - stable
+        - latest
