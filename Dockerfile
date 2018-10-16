@@ -4,4 +4,5 @@ LABEL maintainer="estafette.io" \
       description="The cloud-sdk container is used for releases"
 
 RUN apk add --update --no-cache gettext \
-    && gcloud components install kubectl
+    && gcloud components install kubectl \
+    && rm -rf /var/cache/apk/*
