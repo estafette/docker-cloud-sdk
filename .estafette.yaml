@@ -15,6 +15,13 @@ stages:
     repositories:
     - estafette
 
+  test-container:
+    image: estafette/cloud-sdk:${ESTAFETTE_BUILD_VERSION}
+    env:
+      VAR_A: "test"
+    commands:
+    - echo '${VAR_A}' | envsubst
+
   push-to-docker-hub:
     image: extensions/docker:dev
     action: push
