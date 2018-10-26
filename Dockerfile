@@ -1,11 +1,9 @@
-FROM google/cloud-sdk:221.0.0-alpine
+FROM google/cloud-sdk:222.0.0-alpine
 
 LABEL maintainer="estafette.io" \
-      description="The cloud-sdk container is used for releases"
+      description="The cloud-sdk container is used for releases to gke"
 
 RUN gcloud components install kubectl \
-    && apk add --update libintl \
-    && apk add --virtual build_deps gettext \
-    && cp /usr/bin/envsubst /usr/local/bin/envsubst \
-    && apk del build_deps \
+    && rm -rf /google-cloud-sdk/.install/.backup \
+    && apk add gettext \
     && rm -rf /var/cache/apk/*
