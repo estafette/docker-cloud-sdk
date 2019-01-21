@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:230.0.0-alpine
+FROM google/cloud-sdk:229.0.0-alpine
 
 LABEL maintainer="estafette.io" \
       description="The cloud-sdk container is used for releases to gke"
