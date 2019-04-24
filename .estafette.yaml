@@ -2,7 +2,6 @@ builder:
   track: dev
 
 labels:
-  app: docker-cloud-sdk
   app-group: estafette-various
   team: estafette-team
   language: docker
