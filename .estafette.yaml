@@ -27,10 +27,23 @@ stages:
     container: cloud-sdk
     repositories:
     - estafette
-    tags:
-    - dev
 
 releases:
+  dev:
+    triggers:
+    - pipeline:
+        name: self
+        branch: .+
+    stages:
+      tag-container-image:
+        image: extensions/docker:dev
+        action: tag
+        container: cloud-sdk
+        repositories:
+        - estafette
+        tags:
+        - dev
+
   beta:
     stages:
       tag-container-image:
