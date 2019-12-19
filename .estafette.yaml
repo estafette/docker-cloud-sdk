@@ -14,6 +14,22 @@ stages:
     repositories:
     - estafette
 
+  check-container:
+    parallelStages:
+      check-efficiency:
+        image: extensions/docker:dev
+        action: dive
+        container: cloud-sdk
+        repositories:
+        - estafette
+
+      vulnerability-scan:
+        image: extensions/docker:dev
+        action: trivy
+        container: cloud-sdk
+        repositories:
+        - estafette
+
   test-container:
     image: estafette/cloud-sdk:${ESTAFETTE_BUILD_VERSION}
     env:
