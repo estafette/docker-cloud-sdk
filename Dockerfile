@@ -1,6 +1,6 @@
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:383.0.1-alpine
 
-ENV KUBECTL_VERSION="v1.20.2"
+ENV KUBECTL_VERSION="v1.22.2"
 
 RUN apk update \
     && rm /usr/local/bin/docker \
