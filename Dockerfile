@@ -1,8 +1,8 @@
-FROM gcr.io/google.com/cloudsdktool/cloud-sdk:383.0.1-alpine
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:412.0.0-alpine
 
-ENV KUBECTL_VERSION="v1.22.2"
+ENV KUBECTL_VERSION="v1.23.15"
 
-RUN apk update \
+RUN apk update && apk upgrade \
     && rm /usr/local/bin/docker \
     && apk add --no-cache curl bash dos2unix docker openrc jq gettext perl \
     && rc-update add docker boot \
@@ -16,8 +16,5 @@ RUN curl -L "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubect
     && kubectl version --client \
     && rm -rf /var/cache/apk/* \
     
-
-# FROM alpine:3.13
-
 LABEL maintainer="estafette.io" \
       description="The ${ESTAFETTE_GIT_NAME} component is an Estafette extension to deploy applications to a Kubernetes Engine cluster"    
